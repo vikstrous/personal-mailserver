@@ -33,6 +33,8 @@ Setup
 - If you don't already have an ansible project, look at the example directory and follow the instructions in the README.md there.
 - If you already have an ansible project set up, clone git@github.com:vikstrous/personal-mailserver.git into your roles directory and then look at the README.md in the example directory.
 
+Once you are done I recommend testing it with http://www.mail-tester.com/ and http://mxtoolbox.com/diagnostic.aspx
+
 Connecting to your server
 -------------------------
 
