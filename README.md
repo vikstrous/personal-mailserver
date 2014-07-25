@@ -8,6 +8,7 @@ This config assumes that you are using ansible. You can use it as inspiration if
 Features
 --------
 
+- Uses ansible to deploy
 - Dovecot for imap(s)
 - Postfix for smtp(s)
 - Spamassassin for spam protection
@@ -30,7 +31,7 @@ Setup
 -----
 
 - If you don't already have an ansible project, look at the example directory and follow the instructions in the README.md there.
-- If you already have an ansible project set up, clone git@github.com:vikstrous/personal-mailserver.git into it and then look at the README.md in the example directory.
+- If you already have an ansible project set up, clone git@github.com:vikstrous/personal-mailserver.git into your roles directory and then look at the README.md in the example directory.
 
 Connecting to your server
 -------------------------
