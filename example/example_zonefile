@@ -1,0 +1,23 @@
+$TTL	1800
+@		IN	SOA	NS1.DIGITALOCEAN.COM.	hostmaster.viktorstanchev.com. (
+			1389566762 ; last update: 2014-01-12 22:46:02 UTC
+			3600 ; refresh
+			900 ; retry
+			1209600 ; expire
+			1800 ; ttl
+			)
+             IN      NS      NS1.DIGITALOCEAN.COM.
+                     NS      NS2.DIGITALOCEAN.COM.
+                     NS      NS3.DIGITALOCEAN.COM.
+			MX 2	ASPMX.L.GOOGLE.COM.
+			MX 5	ALT1.ASPMX.L.GOOGLE.COM.
+			MX 5	ALT2.ASPMX.L.GOOGLE.COM.
+			MX 10	ASPMX2.GOOGLEMAIL.COM.
+			MX 10	ASPMX3.GOOGLEMAIL.COM.
+			MX 1	mail.viktorstanchev.com.
+mail	IN A	162.243.62.188
+default._domainkey	TXT	 ( "v=DKIM1; k=rsa; "           "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4tNQoJd5Ki+lnvIO4HAXB/8+KESpTA9VP1Dh0UsoScI2tPD0BGLk72soOUoEX5PmIRiceff8hXNn0QHtevN0AhTf6LMan8yHbP8O2WBjUKYZgwVO4faN62ygoOgziIYo7wVIBp1/RrItBQ3Uui+juEWyW9v2OzlRSF/UijQ3E29BnDb1NQD2e7mYYaHHpe4ouOytO6oE5xyamz"           "bJYPH9MJqkRcy73Nes7NGLFabtEWKYebzecFz8H5Mt5//mOZhw7YTBDpYrzYUrKUr4lOPUI6wxKz0DhUSUfk9rnGWMfO5RmwlhhjE1Ek2cfu1nbQCmiYmkwWb0abmrUnUu9UZjgwIDAQAB" )  ;
+@	IN A	204.232.175.78
+www	CNAME	viktorstanchev.com.
+@	TXT	"v=spf1 include:_spf.google.com a:mail.viktorstanchev.com ip4:162.243.62.188 mx ~all"
+google._domainkey	TXT	v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHyZIKwyV7aQpJtgVZHkSPIMYErkVAoMaH8kwbObb4M86DiS9AcvVtOvbZ1hG7Oi6uwsTwoME6tgsapIwIjLCAsPhs1a6JV50UNihRkweyXTIHoIJT2rspQi3+wAr2W3kzPP407OE3kMBVT4zSKgDnVMMRe5Rm2yeW8xpC6W7FVQIDAQAB

@@ -1,0 +1,7 @@
+- name: set up the mail server
+  hosts: mailserver
+  user: root
+   
+  roles:
+    - personal-mailserver
+    - pretty

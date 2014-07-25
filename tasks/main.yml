@@ -1,0 +1,133 @@
+- name: Create my user group
+  group: name=me state=present
+
+- name: Create my user account
+  user: name=me group=me createhome=yes
+
+- name: Create theexchange user group
+  group: name=theexchange state=present
+
+- name: Create theexchange user account
+  user: name=theexchange group=theexchange createhome=yes
+
+# install packages
+
+- name: Uninstall carp
+  apt: name={{ item }} update_cache=yes state=absent
+  with_items:
+    - sendmail
+    - consolekit
+
+- name: Upgrade packages
+  apt: upgrade=yes update_cache=yes
+  notify:
+    - reboot
+
+- name: Install packages
+  apt: name={{ item }}
+  with_items:
+    - postfix
+    - dovecot-core
+    - dovecot-sieve
+    - dovecot-imapd
+    - dovecot-lmtpd
+#   - dovecot-solr
+    - spamassassin
+    - opendkim
+    - openntpd
+    - sasl2-bin
+
+# configure hostname and mailname
+
+- name: Configure hostname for {{ hostname }}
+  copy: content={{ hostname }} dest=/etc/hostname
+  notify:
+    - reboot
+
+- name: Configure mailname to {{ mailname }}
+  copy: content={{ mailname }} dest=/etc/mailname
+  notify:
+    - restart postfix
+    - restart dovecot
+
+# copy all the things
+
+- name: Postfix template configs
+  template: src={{ item.src }} dest={{ item.dst }} mode=644
+  with_items:
+    - { src: roles/mailserver/templates/postfix/main.cf, dst: /etc/postfix/main.cf }
+    - { src: postfix/virtual, dst: /etc/postfix/virtual }
+  notify:
+    - generate virtual table
+    - restart postfix
+
+- name: Postfix configs
+  copy: src={{ item.src }} dest={{ item.dst }} mode={{ item.mod }}
+  with_items:
+    - { src: postfix/master.cf, dst: /etc/postfix/master.cf, mod: 644 }
+    - { src: postfix/sasl/smtpd.conf, dst: /etc/postfix/sasl/smtpd.conf, mod: 644}
+  notify:
+    - restart postfix
+    - restart saslauthd
+
+- name: Postfix tls cert
+  assemble: src=private/tls/ dest=/etc/postfix/server.pem mode=400
+
+- name: sshd config
+  copy: src=ssh/sshd_config dest=/etc/ssh/sshd_config mode=644
+  notify:
+    - restart sshd
+
+- name: Dovecot configs
+  copy: src={{ item.src }} dest={{ item.dst }} mode={{ item.mod }}
+  with_items:
+    - { src: dovecot/dovecot.conf, dst: /etc/dovecot/dovecot.conf, mod: 644}
+    - { src: dovecot/conf.d/, dst: /etc/dovecot/conf.d/, mod: 644}
+    - { src: private/tls/key.pem, dst: /etc/dovecot/private/dovecot.pem, mod: 400}
+    - { src: private/tls/cert.pem, dst: /etc/dovecot/dovecot.pem, mod: 644}
+  notify:
+    - restart dovecot
+
+- name: Spamassassin configs
+  copy: src=spamassassin/local.cf dest=/etc/spamassassin/local.cf mode=644
+  notify:
+    - restart spamassassin
+
+- name: Spamassassin startup config
+  copy: src=spamassassin/spamassassin dest=/etc/default/spamassassin mode=644
+  notify:
+    - restart spamassassin
+
+- name: OpenDKIM keys directory
+  file: path=/etc/opendkim/keys state=directory
+
+- name: OpenDKIM configs
+  copy: src=private/opendkim/default.private dest=/etc/opendkim/keys/default.private mode=400 owner=opendkim group=opendkim
+  notify:
+    - restart opendkim
+
+- name: OpenDKIM template configs
+  template: src=opendkim/opendkim.conf dest=/etc/opendkim.conf mode=644
+  notify:
+    - restart opendkim
+
+- name: sasl config
+  copy: src=saslauthd dest=/etc/default/saslauthd 
+  notify:
+    - restart saslauthd
+
+- name: Copy user mail filters
+  copy: src=dovecot/.dovecot.sieve dest=/home/me/.dovecot.sieve mode=600 owner=me group=me
+
+# turn on services
+
+- name: Enable and start services
+  service: name={{ item }} state=started enabled=yes
+  with_items:
+    - postfix
+    - dovecot
+    - saslauthd
+    - spamassassin
+    - opendkim
+    - openntpd
+
