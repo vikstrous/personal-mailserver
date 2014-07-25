@@ -55,7 +55,7 @@
 - name: Postfix template configs
   template: src={{ item.src }} dest={{ item.dst }} mode=644
   with_items:
-    - { src: roles/mailserver/templates/postfix/main.cf, dst: /etc/postfix/main.cf }
+    - { src: postfix/main.cf, dst: /etc/postfix/main.cf }
     - { src: postfix/virtual, dst: /etc/postfix/virtual }
   notify:
     - generate virtual table
@@ -71,7 +71,7 @@
     - restart saslauthd
 
 - name: Postfix tls cert
-  assemble: src=private/tls/ dest=/etc/postfix/server.pem mode=400
+  assemble: src=private/tls/ dest=/etc/postfix/server.pem remote_src=False mode=400
 
 - name: sshd config
   copy: src=ssh/sshd_config dest=/etc/ssh/sshd_config mode=644
