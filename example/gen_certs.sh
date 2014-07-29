@@ -4,7 +4,7 @@
 
 # make sure the private directory exists
 
-mkdir -p roles/personal-mailserver/files/private
+mkdir -p roles/personal-mailserver/files/private/tls
 
 openssl genrsa -out roles/personal-mailserver/files/private/tls/key.pem 2048
 openssl req -new -key roles/personal-mailserver/files/private/tls/key.pem -out ./csr.pem
