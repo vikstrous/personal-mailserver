@@ -1,6 +1,6 @@
 1. Fork this repo
 2. Edit the hosts file in this directory to point to your own server instead of mine
-3. Edit group_vars/personal-mailserver
+3. Edit group_vars/mailserver
   1. Set the hostname to whatever your mail server's hostname is. Ex: mail.example.com
   2. Set the mailname to whatever domain you are serving mail for. Ex: example.com
 4. Generate dkim keys. To do that, read gen_certs.sh this will be automated in future iterations
