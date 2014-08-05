@@ -20,7 +20,8 @@ if anyof (
      header :regex ["From"] "notification\+.+@facebookmail.com",
      header :contains ["Sender"] "messages-noreply@bounce.linkedin.com",
      header :contains ["Sender"] "jobs-listings@linkedin.com",
-     header :contains ["Sender"] "member@linkedin.com"
+     header :contains ["Sender"] "member@linkedin.com",
+     header :contains ["Sender"] "jobs-listings@linkedin.com"
 )
  {
     fileinto "Social";
