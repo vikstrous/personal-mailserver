@@ -33,6 +33,11 @@ if header :contains ["List-Id"] "secu-share.lists.secushare.org" {
     stop;
 }
 
+if header :contains ["List-Id"] "secu-dev.lists.secushare.org" {
+    fileinto "Lists/SecuShare";
+    stop;
+}
+
 if header :contains ["List-Id"] "securesocial.googlegroups.com" {
     fileinto "Lists/SecureSocial";
     stop;
