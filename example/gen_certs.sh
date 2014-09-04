@@ -4,10 +4,10 @@
 
 # make sure the private directory exists
 
-mkdir -p roles/personal-mailserver/files/private/tls
+mkdir -p private/tls
 
-openssl genrsa -out roles/personal-mailserver/files/private/tls/key.pem 2048
-openssl req -new -key roles/personal-mailserver/files/private/tls/key.pem -out ./csr.pem
+openssl genrsa -out private/tls/key.pem 2048
+openssl req -new -key files/private/tls/key.pem -out ./csr.pem
 
 # Now get ./csr.pem signed by a CA and then put the CA's certificate (chain) into roles/personal-mailserver/files/private/tls/cert.pem
 
@@ -22,3 +22,5 @@ openssl req -new -key roles/personal-mailserver/files/private/tls/key.pem -out .
 
 # low security
 opendkim-genkey -b 1024 -d viktorstanchev.com
+
+# put the dkim key in private/opendkim/default.private
