@@ -76,7 +76,7 @@
 - name: sshd config
   copy: src=ssh/sshd_config dest=/etc/ssh/sshd_config mode=644
   notify:
-    - restart sshd
+    - restart ssh
 
 - name: Dovecot configs
   copy: src={{ item.src }} dest={{ item.dst }} mode={{ item.mod }}
