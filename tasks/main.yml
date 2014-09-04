@@ -1,8 +1,8 @@
 - name: Create my user group
-  group: name=me state=present
+  group: name={{ username }} state=present
 
 - name: Create my user account
-  user: name=me group=me createhome=yes
+  user: name={{ username }} group={{ username }} createhome=yes
 
 - name: Create theexchange user group
   group: name=theexchange state=present
@@ -117,7 +117,7 @@
     - restart saslauthd
 
 - name: Copy user mail filters
-  copy: src=dovecot/.dovecot.sieve dest=/home/me/.dovecot.sieve mode=600 owner=me group=me
+  copy: src=dovecot/.dovecot.sieve dest=/home/{{ username }}/.dovecot.sieve mode=600 owner={{ username }} group={{ username }}
 
 # turn on services
 
