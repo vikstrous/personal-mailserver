@@ -82,3 +82,8 @@ if header :contains ["List-Id"] "fulldisclosure.seclists.org" {
     fileinto "Lists/FullDisclosure";
     stop;
 }
+
+if header :contains ["List-Id"] "nix-dev.lists.science.uu.nl" {
+    fileinto "Lists/Nix";
+    stop;
+}
