@@ -87,3 +87,8 @@ if header :contains ["List-Id"] "nix-dev.lists.science.uu.nl" {
     fileinto "Lists/Nix";
     stop;
 }
+
+if header :contains ["List-Id"] "aur-general.archlinux.org" {
+    fileinto "Lists/AURGeneral";
+    stop;
+}
