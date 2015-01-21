@@ -78,7 +78,7 @@ if header :contains ["List-Id"] "liberationtech.lists.stanford.edu" {
     stop;
 }
 
-if header :contains ["List-Id"] "fulldisclosure.seclists.org" {
+if header :contains ["List-Id"] "fulldisclosure.nmap.org" {
     fileinto "Lists/FullDisclosure";
     stop;
 }
