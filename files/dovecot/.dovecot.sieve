@@ -28,6 +28,11 @@ if anyof (
     stop;
 }
 
+if header :is ["To"] "spam@viktorstanchev.com" {
+    fileinto "Junk";
+    stop;
+}  
+
 if header :contains ["List-Id"] "secu-share.lists.secushare.org" {
     fileinto "Lists/SecuShare";
     stop;
