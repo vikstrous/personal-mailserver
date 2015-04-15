@@ -4,12 +4,6 @@
 - name: Create my user account
   user: name={{ username }} group={{ username }} createhome=yes
 
-- name: Create theexchange user group
-  group: name=theexchange state=present
-
-- name: Create theexchange user account
-  user: name=theexchange group=theexchange createhome=yes
-
 # install packages
 
 - name: Uninstall carp
