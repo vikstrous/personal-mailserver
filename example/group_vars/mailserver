@@ -2,3 +2,4 @@ mailserver_fqdn: mail.viktorstanchev.com
 mail_for_fqdn: viktorstanchev.com
 mail_username: me
 secrets_path_prefix: secrets
+mail_password: "$6$0n68Xh2p$pfbjbGGkk/Z1D2TejsuG0d4WG21EJVXHeNcrvGRrVRdd5To0FRC0CbbqvGA2Epig/6B9Z6f5P3Ij5vuVKxcm8/"

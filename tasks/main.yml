@@ -4,6 +4,10 @@
 - name: Create my user account
   user: name={{ mail_username }} group={{ mail_username }} createhome=yes
 
+- name: Set password if one is given
+  user: name={{ mail_username }} password={{ mail_password }}
+  when: mail_password is defined
+
 # install packages
 
 - name: Uninstall carp
