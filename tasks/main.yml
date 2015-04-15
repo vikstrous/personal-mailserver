@@ -83,8 +83,8 @@
   with_items:
     - { src: dovecot/dovecot.conf, dst: /etc/dovecot/dovecot.conf, mod: 644}
     - { src: dovecot/conf.d/, dst: /etc/dovecot/conf.d/, mod: 644}
-    - { src: {{ secrets_path_prefix }}/tls/key.pem, dst: /etc/dovecot/private/dovecot.pem, mod: 400}
-    - { src: {{ secrets_path_prefix }}/tls/cert.pem, dst: /etc/dovecot/dovecot.pem, mod: 644}
+    - { src: "{{ secrets_path_prefix }}/tls/key.pem", dst: /etc/dovecot/private/dovecot.pem, mod: 400}
+    - { src: "{{ secrets_path_prefix }}/tls/cert.pem", dst: /etc/dovecot/dovecot.pem, mod: 644}
   notify:
     - restart dovecot
 
