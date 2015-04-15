@@ -71,7 +71,7 @@
     - restart saslauthd
 
 - name: Postfix tls cert
-  assemble: src=private/tls/ dest=/etc/postfix/server.pem remote_src=False mode=400
+  assemble: src=secrets/tls/ dest=/etc/postfix/server.pem remote_src=False mode=400
 
 - name: sshd config
   copy: src=ssh/sshd_config dest=/etc/ssh/sshd_config mode=644
@@ -83,8 +83,8 @@
   with_items:
     - { src: dovecot/dovecot.conf, dst: /etc/dovecot/dovecot.conf, mod: 644}
     - { src: dovecot/conf.d/, dst: /etc/dovecot/conf.d/, mod: 644}
-    - { src: private/tls/key.pem, dst: /etc/dovecot/private/dovecot.pem, mod: 400}
-    - { src: private/tls/cert.pem, dst: /etc/dovecot/dovecot.pem, mod: 644}
+    - { src: secrets/tls/key.pem, dst: /etc/dovecot/private/dovecot.pem, mod: 400}
+    - { src: secrets/tls/cert.pem, dst: /etc/dovecot/dovecot.pem, mod: 644}
   notify:
     - restart dovecot
 
@@ -102,7 +102,7 @@
   file: path=/etc/opendkim/keys state=directory
 
 - name: OpenDKIM configs
-  copy: src=private/opendkim/default.private dest=/etc/opendkim/keys/default.private mode=400 owner=opendkim group=opendkim
+  copy: src=secrets/opendkim/default.private dest=/etc/opendkim/keys/default.private mode=400 owner=opendkim group=opendkim
   notify:
     - restart opendkim
 

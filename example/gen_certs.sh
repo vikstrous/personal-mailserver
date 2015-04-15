@@ -2,18 +2,18 @@
 
 #TODO: modify this script to ask for you domain name, low/high security, self signed or not
 
-# make sure the private directory exists
+# make sure the secrets directory exists
 
-mkdir -p private/tls
+mkdir -p secrets/tls
 
-openssl genrsa -out private/tls/key.pem 2048
-openssl req -new -key files/private/tls/key.pem -out ./csr.pem
+openssl genrsa -out secrets/tls/key.pem 2048
+openssl req -new -key files/secrets/tls/key.pem -out ./csr.pem
 
-# Now get ./csr.pem signed by a CA and then put the CA's certificate (chain) into roles/personal-mailserver/files/private/tls/cert.pem
+# Now get ./csr.pem signed by a CA and then put the CA's certificate (chain) into roles/personal-mailserver/files/secrets/tls/cert.pem
 
 ### SSL keys with a self signed cert:
 
-#openssl req -x509 -newkey rsa:2048 -keyout roles/personal-mailserver/files/private/tls/key.pem -out roles/personal-mailserver/files/private/tls/cert.pem -days 365 -nodes
+#openssl req -x509 -newkey rsa:2048 -keyout roles/personal-mailserver/files/secrets/tls/key.pem -out roles/personal-mailserver/files/secrets/tls/cert.pem -days 365 -nodes
 
 ### DKIM Keys
 
@@ -23,4 +23,4 @@ openssl req -new -key files/private/tls/key.pem -out ./csr.pem
 # low security
 opendkim-genkey -b 1024 -d viktorstanchev.com
 
-# put the dkim key in private/opendkim/default.private
+# put the dkim key in secrets/opendkim/default.private
