@@ -36,6 +36,7 @@
     - opendkim
     - openntpd
     - sasl2-bin
+    - unattended-upgrades
 
 # configure hostname and mailname
 
@@ -51,6 +52,11 @@
     - restart dovecot
 
 # copy all the things
+
+- name: unattended-upgrades config
+  copy: src=50unattended-upgrades dest=/etc/apt/apt.conf.d/50unattended-upgrades mode=644 owner=root group=root
+- name: unattended-upgrades config 2
+  copy: src=10periodic dest=/etc/apt/apt.conf.d/10periodic mode=644 owner=root group=root
 
 - name: Postfix template configs
   template: src={{ item.src }} dest={{ item.dst }} mode=644
