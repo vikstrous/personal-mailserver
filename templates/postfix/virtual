@@ -293,4 +293,4 @@
 # 
 #                                                                     VIRTUAL(5)
 
-@{{ mailname }} {{ username }}
+@{{ mail_for_fqdn }} {{ mail_username }}

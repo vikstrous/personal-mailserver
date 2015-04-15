@@ -1,8 +1,8 @@
 - name: Create my user group
-  group: name={{ username }} state=present
+  group: name={{ mail_username }} state=present
 
 - name: Create my user account
-  user: name={{ username }} group={{ username }} createhome=yes
+  user: name={{ mail_username }} group={{ mail_username }} createhome=yes
 
 # install packages
 
@@ -34,13 +34,13 @@
 
 # configure hostname and mailname
 
-- name: Configure hostname for {{ hostname }}
-  copy: content={{ hostname }} dest=/etc/hostname
+- name: Configure hostname for {{ mailserver_fqdn }}
+  copy: content={{ mailserver_fqdn }} dest=/etc/hostname
   notify:
     - reboot
 
-- name: Configure mailname to {{ mailname }}
-  copy: content={{ mailname }} dest=/etc/mailname
+- name: Configure mailname to {{ mail_for_fqdn }}
+  copy: content={{ mail_for_fqdn }} dest=/etc/mailname
   notify:
     - restart postfix
     - restart dovecot
@@ -117,7 +117,7 @@
     - restart saslauthd
 
 - name: Copy user mail filters
-  copy: src=dovecot/.dovecot.sieve dest=/home/{{ username }}/.dovecot.sieve mode=600 owner={{ username }} group={{ username }}
+  copy: src=dovecot/.dovecot.sieve dest=/home/{{ mail_username }}/.dovecot.sieve mode=600 owner={{ mail_username }} group={{ mail_username }}
 
 # turn on services
 

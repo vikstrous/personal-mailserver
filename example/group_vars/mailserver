@@ -1,3 +1,3 @@
-hostname: mail.viktorstanchev.com
-mailname: viktorstanchev.com
-username: me
+mailserver_fqdn: mail.viktorstanchev.com
+mail_for_fqdn: viktorstanchev.com
+mail_username: me
