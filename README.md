@@ -39,5 +39,3 @@ Connecting to your server
 -------------------------
 
 You should be able to use any imaps/smtps client to send and receive mail.
-
-The username is currently hardcoded as "me".
