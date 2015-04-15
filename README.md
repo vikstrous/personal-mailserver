@@ -17,13 +17,13 @@ Features
 - sasl for ssl/tls
 - I think it disallows non-encrypted imap connections, but I haven't tested
 - Catch-all email address, all email for your domain is sent to user "me"
+- Automatic updates
 
 Limitations
 -----------
 
 - Works on Debian only
 - I haven't thought too hard about older or newer versions of any of the software
-- No automatic updates
 - Overwrites your config files, but I'm not sure if there's much to be done about that one
 - Handles only one domain and one user
 
