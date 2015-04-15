@@ -1,3 +1,4 @@
 mailserver_fqdn: mail.viktorstanchev.com
 mail_for_fqdn: viktorstanchev.com
 mail_username: me
+secrets_path_prefix: secrets
