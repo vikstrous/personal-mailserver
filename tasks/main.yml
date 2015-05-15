@@ -106,7 +106,7 @@
   file: path=/etc/opendkim/keys state=directory
 
 - name: OpenDKIM configs
-  copy: src={{ secrets_path_prefix }}/opendkim/default.private dest=/etc/opendkim/keys/default.private mode=400 owner=opendkim group=opendkim
+  copy: src={{ secrets_path_prefix }}/opendkim/default.private dest=/etc/opendkim/keys/default.private mode=440 owner=root group=opendkim
   notify:
     - restart opendkim
 
