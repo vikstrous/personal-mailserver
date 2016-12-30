@@ -1,6 +1,8 @@
 personal-mailserver
 ===================
 
+### UPDATE: DEPRECATED; See https://github.com/vikstrous/mailserver
+
 A config for a single user debian mail server that uses dovecot and postfix
 
 This config assumes that you are using ansible. You can use it as inspiration if you are not, but it should be much easier to use if you are.
